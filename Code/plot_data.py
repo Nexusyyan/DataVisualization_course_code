@@ -6,12 +6,12 @@ Created on Tue Feb  8 01:11:24 2022
 """
 
 import pyecharts.options as opts
-from pyecharts.charts import WordCloud,Timeline,Bar,Grid,Page
+from pyecharts.charts import WordCloud,Timeline,Bar,Grid,Page,Tab
 import pandas as pd
 from pyecharts.faker import Faker
 #%%
 x = Faker.choose()
-tl = Timeline(init_opts=opts.InitOpts(width="100%", height="600px"))
+tl = Timeline(init_opts=opts.InitOpts(width="1500px", height="600px"))
 totaldic={}
 #%%
 for i in range(568,607):
@@ -73,9 +73,10 @@ b1 = (
     .set_global_opts(
             datazoom_opts=[opts.DataZoomOpts(pos_bottom='10%')],)
     )
-grid = Grid(init_opts=opts.InitOpts(width="100%", height="600px"))
+grid = Grid(init_opts=opts.InitOpts(width="1500px", height="600px"))
 grid.add(b1, grid_opts=opts.GridOpts(pos_left='5%',pos_right='65%',pos_bottom='10%'))
 grid.add(g1, grid_opts=opts.GridOpts())
-p=Page()
-p.add(tl,grid)
-p.render("timeline_bar.html")
+t=Tab(page_title='19120408龙胤延')
+t.add(tl,'分热点')
+t.add(grid,'总热点')
+t.render("19120408龙胤延.html")
